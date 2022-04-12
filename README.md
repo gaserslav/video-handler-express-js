@@ -35,3 +35,5 @@ so parametars....
 4 async function that gets size of that data(video) 
 
 5 (optional) size of *chunk*(amount of data that video will be break into before sending (it would be stupied to send whole video at once) simular to *pipe* function in stream object) default chunk is 1MB
+
+>why is it the way it is ?
