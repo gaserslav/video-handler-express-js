@@ -37,3 +37,6 @@ so parametars....
 5 (optional) size of *chunk*(amount of data that video will be break into before sending (it would be stupied to send whole video at once) simular to *pipe* function in stream object) default chunk is 1MB
 
 >why is it the way it is ?
+
+
+lets say video that you want to host isnt directly on server (database for example) so you cant use *fs* to access it
