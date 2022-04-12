@@ -1,13 +1,12 @@
  
 const {Readable} = require('stream'); 
-async function handleVideo(req,res,getPart,getSize){
+async function handleVideo(req,res,getPart,getSize,chunk){
  
     req.on('close',()=>{ 
         return
     })
  
     let range=req.headers.range
-    const chunk=1000*1000*10
     const video_size=await getSize()
      if(!video_size){
          res.write("ERROR")
@@ -15,14 +14,6 @@ async function handleVideo(req,res,getPart,getSize){
     }
 
     if(!range){   
-        /*
-        const head = {
-            'Content-Length': video_size,
-            'Content-Type': 'video/mp4',
-        };
-        res.writeHead(200, head);
-        return
-        */
          range="bytes=0-"
      } 
      const start =parseInt(range.replace(/\D/g, ""));
@@ -42,7 +33,10 @@ async function handleVideo(req,res,getPart,getSize){
     res.write(await getPart(start,end))   
       
 }
- 
+ async function handleVideo(req,res,getPart,getSize,chunk){
+  //default chunk is 1BM
+  handleVideo(req,res,getPart,getSize,1000*1000)
+ }
 
 
 
